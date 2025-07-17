@@ -2,6 +2,7 @@ import pygame
 import Enemy
 import clouds
 import player
+import player_gas
 import snipets
 import sprite_sheet
 
