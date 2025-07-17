@@ -1,5 +1,5 @@
 import pygame
-
+import random
 import bullet
 import snipets
 import player_gas
@@ -25,6 +25,7 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.rect.center = snipets.player_starting_position
+        self.player_shoot_timer = 0
 
         self.gas_time = 0
         self.gas_spawn_time = snipets.gas_spawn_time
@@ -93,7 +94,7 @@ class Player(pygame.sprite.Sprite):
 
         if self.gas_time >= self.gas_spawn_time:
             self.gas_time = 0
-            player_gas.Gas((self.rect.center[0], self.rect.bottom))
+            player_gas.Gas((self.rect.center[0] + random.randint(-10, 10), self.rect.bottom))
 
         if self.propeller_timer >= self.propeller_time:
             self.propeller_state += 1
@@ -112,7 +113,7 @@ class Player(pygame.sprite.Sprite):
             self.propeller_image = self.propeller_image3
 
     def shooting(self, keys_pressed):
-        snipets.bullet_cooldown_timer += 1
-        if keys_pressed[ord(" ")] and snipets.bullet_cooldown_timer >= snipets.bullet_cooldown:
-            bullet.Bullet(self.rect.center)
-            snipets.bullet_cooldown_timer = 0
+        self.player_shoot_timer += 1
+        if keys_pressed[ord(" ")] and self.player_shoot_timer >= snipets.player_shoot_time:
+            bullet.Bullet((self.rect.x + self.rect.width / 2 + random.randint(-20, 20), self.rect.top), "player", self.rect.center)
+            self.player_shoot_timer = 0

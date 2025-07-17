@@ -8,7 +8,7 @@ class Cloud(pygame.sprite.Sprite):
         super().__init__()
         self.image = random.choice(snipets.cloud_images)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, snipets.screen_width)
+        self.rect.x = random.randint(-20, snipets.screen_width + 20)
         self.rect.bottom = 0
         snipets.cloud_group.add(self)
 
