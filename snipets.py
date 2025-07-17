@@ -12,14 +12,17 @@ player_speed = 6
 gas_group = pygame.sprite.Group()
 gas_spawn_time = 10
 
-bullet_image = None
-bullet_speed = 10
-bullet_cooldown = 10
-bullet_cooldown_timer = 0
+bullet_speed = 5
+player_shoot_time = 10
 bullet_group = pygame.sprite.Group()
+bullet_kill_time = 80
 
 cloud_group = pygame.sprite.Group()
 cloud_images = []
-cloud_speed = 5
+cloud_speed = 8
 cloud_time = 14
 cloud_timer = 0
+
+enemy_group = pygame.sprite.Group()
+enemy_speed = 1
+enemy_shoot_time = 10
